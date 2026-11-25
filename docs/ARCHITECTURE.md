@@ -166,3 +166,8 @@ The companion image is now rendered from local PNG poses in `assets/cat/wave/`. 
 ## v9.11 current character implementation
 
 The one persistent companion uses a still seated PNG pose at rest and a nine-frame PNG paw-wave sequence on taps and greeting/celebration states. Frames are preloaded from local assets and switched with timer-driven sequence playback. The full image is not translated, scaled or rotated to imitate an animation. The speech bubble and audio activity bars remain, while mouth-sync, pupil gaze and expressive eye states wait for matching face artwork.
+
+
+## Second-mistake facial reaction (v9.19)
+
+The cat uses the local transparent 418×418 `assets/cat/faces/oops-eyes.webp` overlay during the second incorrect answer in a round. The app applies `data-oops-level="second"` to the persistent companion only for the distinct second-mistake audio. The supplied face art covers only the eye/brow area and keeps the mouth transparent, so `#catMouthImage` continues to follow the active local audio. The normal blink overlay is hidden during this brief reaction to avoid competing eye artwork. The overlay is local and offline-safe.

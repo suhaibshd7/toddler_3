@@ -370,6 +370,9 @@
     if (catPointResetTimer) window.clearTimeout(catPointResetTimer);
     catPointResetTimer = null;
 
+    if (options.secondMistake === true) catCompanion.dataset.oopsLevel = 'second';
+    else delete catCompanion.dataset.oopsLevel;
+
     if (options.celebration) catCompanion.dataset.celebration = options.celebration;
     else if (mood !== 'celebrating') delete catCompanion.dataset.celebration;
 
@@ -874,7 +877,7 @@
       if (isSecondMistake) {
         // A distinct owner-supplied local recording is used on the second mistake.
         // The cat stays concerned and speaks through the normal synchronized path.
-        setCatMessage('لا بأس، لنستمع مرة أخرى!', 'oops');
+        setCatMessage('لا بأس، لنستمع مرة أخرى!', 'oops', { secondMistake: true });
         await playCatAudio('feedback.second_mistake', {
           guard: () => token === state.roundToken && state.active
         });

@@ -33,3 +33,5 @@
 - KNOWN: `.parent-panel` is `display: none !important` on every screen, so the show-labels switch, progress reset and stats are unreachable. Not changed; discuss with the owner before touching.
 
 - v9.19 keeps answer cards disabled until the target prompt finishes successfully. The first wrong answer retains the existing retry recording; the second wrong answer uses `assets/audio/feedback/second-mistake.mp3` (`feedback.second_mistake`). The wrong-attempt count resets each round.
+
+- The second-mistake cat face uses the local transparent 418×418 overlay `assets/cat/faces/oops-eyes.webp`, controlled by `data-oops-level="second"`. Keep its mouth area transparent; the existing synchronized mouth remains a separate overlay. Hide the normal blink while this face overlay is active.
