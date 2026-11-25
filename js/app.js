@@ -1,4 +1,4 @@
-/* Arabic Learning Game v9.17 — envelope-driven mouth, idle blink, tap pop, and naming the tapped item on a wrong answer. */
+/* Arabic Learning Game v9.19 — second-mistake feedback and listen-before-tap input lock. */
 (function () {
   'use strict';
 
@@ -274,6 +274,7 @@
     roundToken: 0,
     locked: false,
     waitingAfterWrong: false,
+    wrongAttempts: 0,
     firstTryCorrect: null,
     promptReady: false,
     greetedThisSession: false,
@@ -349,6 +350,13 @@
     const box = $('feedback');
     box.textContent = message || '';
     box.className = 'feedback' + (kind ? ` ${kind}` : '');
+  }
+
+  // Answer cards are only active after the child has heard the target prompt.
+  function setChoicesEnabled(enabled) {
+    $('choices').querySelectorAll('button').forEach((button) => {
+      button.disabled = !enabled;
+    });
   }
 
   function setCatMessage(message, mood = 'idle', options = {}) {
@@ -633,6 +641,7 @@
     state.options.forEach((item, index) => {
       const button = document.createElement('button');
       button.type = 'button';
+      button.disabled = !state.promptReady || state.locked || state.waitingAfterWrong;
       button.className = 'choice-card';
       if (isColorActivity) button.classList.add('color-choice-card');
       if (isShapeActivity) button.classList.add('shape-choice-card');
@@ -748,7 +757,9 @@
     stopAllAudio();
     state.locked = false;
     state.waitingAfterWrong = false;
+    state.wrongAttempts = 0;
     state.firstTryCorrect = null;
+    state.promptReady = false;
     state.target = chooseTarget();
     state.lastTargetId = state.target.id;
 
@@ -758,10 +769,10 @@
     state.options = shuffle([state.target, ...distractors]);
 
     renderOptions();
+    setChoicesEnabled(false);
     showFeedback('');
     $('gameRounds').textContent = String(activityProgress.roundsCompleted);
     $('speakerButton').disabled = true;
-    state.promptReady = false;
     $('speakerButton').classList.remove('is-playing');
     if (options.playPrompt !== false) playTargetWord();
     return state.roundToken;
@@ -771,6 +782,7 @@
     if (!state.target || !state.active || state.locked) return;
     const token = state.roundToken;
     state.promptReady = false;
+    setChoicesEnabled(false);
     $('speakerButton').disabled = true;
     $('speakerButton').classList.add('is-playing');
     makeCatLookAt($('choices'), 0);
@@ -783,6 +795,7 @@
     $('speakerButton').classList.remove('is-playing');
     $('speakerButton').disabled = false;
     state.promptReady = result.played === true;
+    setChoicesEnabled(state.promptReady);
 
     if (state.promptReady) {
       // Once the word is heard, the cat gives a brief general gesture toward
@@ -837,9 +850,12 @@
     makeCatLookAt(button, 2400);
 
     if (item.id !== state.target.id) {
+      state.wrongAttempts += 1;
+      const isSecondMistake = state.wrongAttempts === 2;
       if (state.firstTryCorrect === null) state.firstTryCorrect = false;
       state.waitingAfterWrong = true;
       state.promptReady = false;
+      setChoicesEnabled(false);
       $('speakerButton').disabled = true;
       button.classList.remove('wrong');
       void button.offsetWidth;
@@ -855,7 +871,16 @@
       if (token !== state.roundToken || !state.active) return;
       await wait(180);
       if (token !== state.roundToken || !state.active) return;
-      await playCatLine('praise.try_again', 'هيا نحاول مرة أخرى!', 'oops', token);
+      if (isSecondMistake) {
+        // A distinct owner-supplied local recording is used on the second mistake.
+        // The cat stays concerned and speaks through the normal synchronized path.
+        setCatMessage('لا بأس، لنستمع مرة أخرى!', 'oops');
+        await playCatAudio('feedback.second_mistake', {
+          guard: () => token === state.roundToken && state.active
+        });
+      } else {
+        await playCatLine('praise.try_again', 'هيا نحاول مرة أخرى!', 'oops', token);
+      }
       if (token !== state.roundToken || !state.active) return;
       state.waitingAfterWrong = false;
       await playTargetWord();
@@ -1071,6 +1096,7 @@
       stopAllAudio();
       stopCatWave();
       state.promptReady = false;
+      setChoicesEnabled(false);
       $('speakerButton').classList.remove('is-playing');
       if (state.active) {
         $('speakerButton').disabled = false;
@@ -1114,7 +1140,8 @@
   setCatMessage('مرحباً!', 'idle');
   const preloadIds = [
     ...Object.values(DATA.activities).flatMap((activity) => activity.items.map((item) => item.audioId)),
-    ...DATA.praise.map((item) => item.audioId)
+    ...DATA.praise.map((item) => item.audioId),
+    'feedback.second_mistake'
   ];
   LocalAudio.preload(preloadIds);
   document.documentElement.dataset.appReady = 'true';

@@ -35,7 +35,8 @@ Four items: دائرة، مربع، مثلث، نجمة. Each answer card uses a
 - Select a target from that activity using an activity-specific shuffled deck: every item appears once before the deck is reshuffled, and the first target of a new deck cannot repeat the previous deck’s final target.
 - Begin with two choices; add random distractors from the same activity up to that activity's total item count.
 - Play the target word. The speaker button replays it.
-- A wrong tap gives gentle visual feedback, waits briefly, then repeats the target word. The child can keep trying the same round.
+- A wrong tap identifies the tapped item, then gives the existing retry line on the first mistake or `feedback.second_mistake` on the second mistake, before repeating the target word. The child can keep trying the same round.
+- Answer cards stay disabled while target/feedback audio plays and become available only after the target prompt finishes successfully.
 - A correct tap plays one random single-word praise clip and completes the round.
 - Evaluate the first-try results over the latest five completed rounds: 4–5 successes adds one choice; 0–2 successes removes one choice if above two. The result window resets after a level change.
 - Progress is separate for animals, colors, shapes, numbers and Arabic letters. The global label preference is shared.

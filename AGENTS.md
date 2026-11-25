@@ -15,7 +15,7 @@
 - Use one persistent cat companion as the only speaking mascot. Keep it visible on both home and activity screens; do not add additional speaking animal characters unless the user explicitly asks.
 - Reuse existing local greeting, target, praise and retry audio before asking for new recordings. Do not add speech that depends on online TTS.
 
-- Current build version: v9.18. Keep the visible version label and metadata synchronized for future releases.
+- Current build version: v9.19. Keep the visible version label and metadata synchronized for future releases.
 - Session length is 15 completed rounds. The optional end clip path is `assets/audio/instructions/game-ended.mp3`; do not assume it exists until supplied.
 
 - v9.06 uses LocalAudio.play(audioId, onStart) and playCatAudio() to synchronize mouth/voice-bar animation with actual local audio playback. Preserve request-token cancellation behavior.
@@ -31,3 +31,5 @@
 - v9.17 adds owner-approved synthesized sound effects (`js/sfx.js`, Web Audio oscillators, no files). Speech still comes only from the local MP3 clips. Effects have an on/off switch in the home header (`#sfxToggle`, stored under `arabic-learning-game-sfx-v1`); keep any new effect behind `GameSfx.isEnabled()`.
 - v9.17: on a wrong answer the cat first says the tapped item's own clip, then the existing "try again" line, then the target word again. Answers are still ignored until the prompt clip has played (existing design); if a prompt clip fails the child must press the speaker.
 - KNOWN: `.parent-panel` is `display: none !important` on every screen, so the show-labels switch, progress reset and stats are unreachable. Not changed; discuss with the owner before touching.
+
+- v9.19 keeps answer cards disabled until the target prompt finishes successfully. The first wrong answer retains the existing retry recording; the second wrong answer uses `assets/audio/feedback/second-mistake.mp3` (`feedback.second_mistake`). The wrong-attempt count resets each round.
