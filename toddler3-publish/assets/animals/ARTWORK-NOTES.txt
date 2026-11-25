@@ -1,0 +1,8 @@
+Animal illustrations
+
+Five original AI-generated illustrations are included as transparent PNG assets:
+cat.png, dog.png, rabbit.png, bear.png, duck.png.
+
+They were cropped from a single generated illustration sheet and prepared as
+512x512 transparent images for use as local game assets. No external image
+service or network request is used while the game runs.

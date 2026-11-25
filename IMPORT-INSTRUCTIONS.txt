@@ -1,0 +1,13 @@
+Arabic Kitten Game v9.18 — import to GitHub
+
+1. Download and extract toddler3-v9.18-import-bundle.zip. Open the extracted toddler3-import-bundle folder. Keep the toddler3-publish folder, push-to-github.bat, and toddler3-publish-to-github.ps1 together in that folder.
+2. Make sure Git for Windows is installed and signed in to GitHub (Git Credential Manager or GitHub Desktop sign-in works).
+3. Double-click push-to-github.bat. It clones https://github.com/suhaibshd7/toddler_3 to Documents\toddler_3, copies the editable project folders/files into the repository root, commits, and pushes them to main.
+4. After the push, the repository should show index.html, css/, js/, assets/, docs/, and tools/ as separate files/folders.
+5. GitHub Pages should be set to: Deploy from a branch / main / /(root).
+
+If Windows blocks scripts, open PowerShell in the extracted folder and run:
+  Set-ExecutionPolicy -Scope Process Bypass
+  .\toddler3-publish-to-github.ps1
+
+The ZIP is only a transfer wrapper. The importer copies normal project files into the GitHub repository; it does not upload a ZIP into the repository. All 37 MP3 recordings are preserved. Image assets are WebP for web performance.
