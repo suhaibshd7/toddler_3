@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f7ff">
+  <meta name="application-version" content="9.18">
+  <meta name="description" content="لعبة عربية بسيطة للأطفال لتعلّم الحيوانات والألوان والأشكال والأرقام والحروف بالاستماع والاختيار.">
+  <title>نتعلّم باللعب — تعلّم واكتشف</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">🐾</span>
+        <div>
+          <div class="brand-title">نتعلّم باللعب</div>
+          <div class="brand-subtitle">لعبة صغيرة لاكتشاف العالم</div>
+        </div>
+      </div>
+      <span class="offline-pill"><span class="offline-dot"></span> يعمل دون إنترنت</span>
+      <button id="sfxToggle" class="quiet-button sfx-toggle" type="button" aria-pressed="true" aria-label="المؤثرات الصوتية: تعمل" title="المؤثرات الصوتية"><span class="sfx-toggle-icon" aria-hidden="true">🔔</span><span class="sfx-toggle-label">المؤثرات</span></button>
+    </header>
+
+    <main>
+      <section id="homeScreen" class="screen home-screen" aria-labelledby="homeTitle">
+        <div class="welcome-card">
+          <h1 id="homeTitle">أهلاً! هيا نلعب ونتعلّم</h1>
+          <p>اسمع الكلمة، ثم اختر الصورة أو اللون أو الشكل أو الرقم أو الحرف المناسب.</p>
+          <button id="startButton" class="primary-button" type="button">
+            <span aria-hidden="true">▶</span> ابدأ نشاط الحيوانات
+          </button>
+        </div>
+
+        <div id="homeCatSlot" class="cat-slot cat-slot-home" aria-label="القطة المرشدة"></div>
+
+        <section class="activities" aria-label="الأنشطة">
+          <h2>اختر نشاطاً</h2>
+          <div class="activity-grid">
+            <button class="activity-card active-activity" type="button" data-activity="animals" aria-label="ابدأ نشاط الحيوانات">
+              <span class="activity-emoji" aria-hidden="true">🐾</span>
+              <span class="activity-name">الحيوانات</span>
+              <span class="activity-status">العب الآن</span>
+            </button>
+            <button class="activity-card active-activity color-activity" type="button" data-activity="colors" aria-label="ابدأ نشاط الألوان">
+              <span class="activity-emoji" aria-hidden="true">🎨</span>
+              <span class="activity-name">الألوان</span>
+              <span class="activity-status">العب الآن</span>
+            </button>
+            <button class="activity-card active-activity shape-activity" type="button" data-activity="shapes" aria-label="ابدأ نشاط الأشكال"><span class="activity-emoji" aria-hidden="true">🔺</span><span class="activity-name">الأشكال</span><span class="activity-status">العب الآن</span></button>
+            <button class="activity-card active-activity number-activity" type="button" data-activity="numbers" aria-label="ابدأ نشاط الأرقام">
+              <span class="activity-emoji" aria-hidden="true">🔢</span>
+              <span class="activity-name">الأرقام</span>
+              <span class="activity-status">العب الآن</span>
+            </button>
+            <button class="activity-card active-activity letter-activity" type="button" data-activity="letters" aria-label="ابدأ نشاط الحروف">
+              <span class="activity-emoji" aria-hidden="true">🔤</span>
+              <span class="activity-name">الحروف</span>
+              <span class="activity-status">العب الآن</span>
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <section id="gameScreen" class="screen game-screen" hidden aria-labelledby="gameTitle">
+        <div class="game-toolbar">
+          <button id="homeButton" class="quiet-button" type="button"><span aria-hidden="true">⌂</span> الرئيسية</button>
+          <div class="game-heading">
+            <span id="gameHeadingIcon" class="game-heading-icon" aria-hidden="true">🐾</span>
+            <h1 id="gameTitle">الحيوانات</h1>
+          </div>
+          <div class="round-counter"><span id="gameRounds">0</span><small>جولات</small></div>
+          <button id="fullscreenButton" class="quiet-button fullscreen-button" type="button" aria-label="ملء الشاشة" title="ملء الشاشة"><span aria-hidden="true">⛶</span><span class="fullscreen-button-label">ملء الشاشة</span></button>
+        </div>
+
+        <div class="session-progress" aria-label="تقدم اللعب في هذه الجلسة">
+          <span class="session-progress-title">نجوم اللعب</span>
+          <div id="sessionStars" class="session-stars" aria-hidden="true">
+            <span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span><span class="session-star">★</span>
+          </div>
+          <span id="sessionProgressLabel" class="session-progress-count">0 / 15</span>
+        </div>
+
+        <section class="listen-panel" aria-label="الكلمة المطلوبة">
+          <div class="listen-copy">
+            <span class="eyebrow">استمع واختر</span>
+            <h2>استمع إلى الكلمة</h2>
+            <p>اضغط على السماعة لسماعها مرة أخرى.</p>
+          </div>
+          <button id="speakerButton" class="speaker-button" type="button" aria-label="استمع إلى الكلمة مرة أخرى">
+            <span aria-hidden="true">🔊</span>
+            <span class="speaker-rings" aria-hidden="true"></span>
+          </button>
+        </section>
+
+        <div id="gameCatSlot" class="cat-slot cat-slot-game" aria-label="القطة المرشدة"></div>
+
+        <div class="choices-header">
+          <span id="choicesInstruction">اختر الحيوان المناسب</span>
+          <span id="levelPill" class="level-pill">خياران</span>
+        </div>
+        <div id="choices" class="choices" data-choice-count="2" data-activity="animals" aria-label="الحيوانات"></div>
+        <div id="feedback" class="feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+
+        <section id="sessionEnd" class="session-end" hidden aria-labelledby="sessionEndTitle">
+          <div class="session-end-stars" aria-hidden="true">⭐ ⭐ ⭐</div>
+          <h2 id="sessionEndTitle">أحسنت! أكملت ١٥ جولة!</h2>
+          <p>هل نكمل اللعب أم نبدأ من جديد؟</p>
+          <div class="session-end-actions">
+            <button id="restartSessionButton" class="restart-session-button" type="button">
+              <span aria-hidden="true">↻</span> نعيد من البداية
+            </button>
+            <button id="continueSessionButton" class="continue-session-button" type="button">
+              <span aria-hidden="true">▶</span> نكمل اللعب
+            </button>
+          </div>
+          <p class="session-end-note">إعادة البداية تصفّر تقدم هذا النشاط وتعيده إلى خيارين. المتابعة تحفظ تقدمك الحالي.</p>
+        </section>
+
+        <details class="parent-panel">
+          <summary>إعدادات الكبار ومتابعة التقدم</summary>
+          <div class="parent-content">
+            <div class="parent-stats">
+              <div><strong id="parentRounds">0</strong><span>جولات مكتملة</span></div>
+              <div><strong id="parentChoices">2</strong><span>عدد الخيارات الحالي</span></div>
+              <div><strong id="parentRecent">لم تبدأ بعد</strong><span>النجاح في آخر 5 جولات</span></div>
+            </div>
+            <label class="toggle-row"><input id="showLabelsToggle" type="checkbox"><span>إظهار أسماء الخيارات</span></label>
+            <p class="parent-note">التقدم مستقل لكل نشاط. تبدأ اللعبة بخيارين، وتزداد الخيارات تدريجياً عند تحقيق نجاح متكرر، وتقل عند الحاجة. يُحفظ التقدم محلياً على هذا الجهاز فقط.</p>
+            <p class="parent-note">النشاط الحالي: <strong id="parentActivityName">الحيوانات</strong></p>
+            <button id="resetProgressButton" class="reset-button" type="button">إعادة ضبط تقدم هذا النشاط</button>
+          </div>
+        </details>
+        <span class="build-version game-build-version" aria-label="إصدار اللعبة 9.18">v9.18</span>
+      </section>
+    </main>
+
+    <aside id="catCompanion" class="cat-companion" data-mood="idle" aria-label="القطة المرشدة">
+      <div class="cat-avatar-stage">
+        <span class="cat-oops-mark" aria-hidden="true">؟</span>
+        <span class="cat-choice-cue" aria-hidden="true">↓</span>
+        <span class="cat-companion-sparkle sparkle-one" aria-hidden="true">✦</span>
+        <button id="catCharacterButton" class="cat-character-button" type="button" aria-label="اضغط على القطة لتتفاعل معك" title="اضغط عليّ!">
+          <img id="catCharacterImage" class="cat-companion-image" src="assets/cat/wave/frame-01.webp" alt="قطة برتقالية لطيفة تجلس" draggable="false">
+          <img id="catBlinkImage" class="cat-blink-overlay" src="assets/cat/blink/eyes-closed.webp" alt="" aria-hidden="true" draggable="false">
+          <img id="catMouthImage" class="cat-mouth-overlay" src="assets/cat/mouth/frame-01-closed.webp" alt="" aria-hidden="true" draggable="false">
+        </button>
+        <span class="cat-companion-sparkle sparkle-two" aria-hidden="true">✦</span>
+      </div>
+      <div class="cat-speech-bubble">
+        <span class="cat-companion-label">صديقك الصغير</span>
+        <p id="catSpeechText" aria-live="polite" aria-atomic="true">مرحباً!</p>
+        <span class="cat-speaking-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
+    </aside>
+
+    <footer class="app-footer">صُمّمت للّعب الهادئ والتعلّم خطوة بخطوة <span aria-hidden="true">💛</span></footer>
+  </div>
+
+  <span class="build-version home-build-version" aria-label="إصدار اللعبة 9.18" title="إصدار اللعبة">v9.18</span>
+
+  <script src="js/game-data.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/sfx.js"></script>
+  <script src="js/mouth-envelopes.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
