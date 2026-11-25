@@ -1,23 +1,29 @@
 # نتعلّم باللعب — Arabic Kitten Game (v9.18)
 
-A static Arabic learning game built with plain HTML, CSS and JavaScript.
+The v9.18 Arabic learning game is stored as normal, editable project files in this repository.
 
-## Import status
+## Run locally
 
-The GitHub repository is not yet a complete copy of the app. The v9.18 application source and assets still need to be added at the repository root (`index.html`, `css/`, `js/`, and `assets/`). This README records that clearly so the repository is not mistaken for a finished, playable deployment.
-
-## Run locally after importing the app
-
-Run `python -m http.server 8010` from the repository root, then open http://localhost:8010. On Windows, `run.bat` can start the local server.
+Run `python -m http.server 8010` from the repository root, then open http://localhost:8010. On Windows, run `run.bat`.
 
 ## GitHub Pages (free branch publishing)
 
-After importing the app files, open **Settings → Pages** and set:
+The site is published from the repository root. In **Settings → Pages**, use:
 
 - **Source:** Deploy from a branch
 - **Branch:** `main`
 - **Folder:** `/(root)`
 
-The expected site address is https://suhaibshd7.github.io/toddler_3/.
+Site URL: https://suhaibshd7.github.io/toddler_3/.
 
-The app needs no bundler or framework build step. Main edit points are `index.html`, `css/styles.css`, `js/app.js`, `js/game-data.js`, and `assets/`. The `.nojekyll` file is included in the repository.
+## Main edit points
+
+- `index.html` — app structure
+- `css/styles.css` — layout and visual design
+- `js/app.js` — game flow and interactions
+- `js/game-data.js` — activity content
+- `js/audio.js` and `js/mouth-envelopes.js` — audio and mouth animation timing
+- `assets/` — local character, choice and audio assets
+- `docs/` and `tools/` — project notes and authoring utilities
+
+No framework, package manager or build step is required. All asset paths are relative for project Pages hosting.
