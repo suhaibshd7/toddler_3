@@ -1,6 +1,6 @@
-# نتعلّم باللعب — Arabic Kitten Game (v9.20)
+# نتعلّم باللعب — Arabic Kitten Game (v9.21)
 
-The v9.20 Arabic learning game is stored as normal, editable project files in this repository.
+The v9.21 Arabic learning game is stored as normal, editable project files in this repository.
 
 ## Run locally
 
