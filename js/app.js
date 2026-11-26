@@ -1,4 +1,4 @@
-/* Arabic Learning Game v9.21 — second-mistake feedback on the second and later mistakes. */
+/* Arabic Learning Game v9.22 — restore animated second-mistake cat reaction. */
 (function () {
   'use strict';
 
@@ -378,9 +378,9 @@
 
     const nextMood = mood || 'idle';
     if (nextMood === 'greeting' || nextMood === 'tiny-wave' || nextMood === 'celebrating') playCatWave();
-    if (catCompanion.dataset.mood !== nextMood) {
-      // A short neutral frame lets the next CSS choreography enter cleanly
-      // instead of snapping between expressions.
+    if (catCompanion.dataset.mood !== nextMood || nextMood === 'oops') {
+      // Restart the raster-cat "oops" choreography on every wrong-answer beat.
+      // A neutral frame restarts its CSS animation even when the mood is already oops.
       catCompanion.dataset.mood = 'transitioning';
       void catCompanion.offsetWidth;
     }

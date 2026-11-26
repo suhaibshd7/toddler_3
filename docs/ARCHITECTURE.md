@@ -171,3 +171,8 @@ The one persistent companion uses a still seated PNG pose at rest and a nine-fra
 ## Second-mistake facial reaction (v9.19)
 
 The cat uses the local transparent 418×418 `assets/cat/faces/oops-eyes.webp` overlay during the second and every subsequent incorrect answer in a round. The app applies `data-oops-level="second"` to the persistent companion while the distinct second-mistake audio plays. The first incorrect answer retains the regular retry feedback. The supplied face art covers only the eye/brow area and keeps the mouth transparent, so `#catMouthImage` continues to follow the active local audio. The normal blink overlay is hidden during this brief reaction to avoid competing eye artwork. The overlay is local and offline-safe.
+
+
+## Raster-cat oops animation (v9.22)
+
+The old oops choreography targeted separate SVG parts (head, body, ears, paw and tail). The current companion uses one frame-based WebP pose instead, so those selectors no longer animate visible elements. v9.22 ports the reaction to the current layers: the base cat image performs a small startled dip/tilt, while the transparent worried-eye overlay pops into place. Reflow the `oops` mood on every feedback beat so repeated second-and-later wrong answers replay the motion. The eye art remains local; the mouth overlay remains independently audio-synchronized.
