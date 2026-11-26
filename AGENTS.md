@@ -15,7 +15,7 @@
 - Use one persistent cat companion as the only speaking mascot. Keep it visible on both home and activity screens; do not add additional speaking animal characters unless the user explicitly asks.
 - Reuse existing local greeting, target, praise and retry audio before asking for new recordings. Do not add speech that depends on online TTS.
 
-- Current build version: v9.22. Keep the visible version label and metadata synchronized for future releases.
+- Current build version: v9.23. Keep the visible version label and metadata synchronized for future releases.
 - Session length is 15 completed rounds. The optional end clip path is `assets/audio/instructions/game-ended.mp3`; do not assume it exists until supplied.
 
 - v9.06 uses LocalAudio.play(audioId, onStart) and playCatAudio() to synchronize mouth/voice-bar animation with actual local audio playback. Preserve request-token cancellation behavior.
@@ -34,6 +34,8 @@
 
 - v9.19 keeps answer cards disabled until the target prompt finishes successfully. The first wrong answer retains the existing retry recording; the second wrong answer uses `assets/audio/feedback/second-mistake.mp3` (`feedback.second_mistake`). The wrong-attempt count resets each round.
 
-- The second-mistake cat face uses the local transparent 418×418 overlay `assets/cat/faces/oops-eyes.webp`, controlled by `data-oops-level="second"`. Keep its mouth area transparent; the existing synchronized mouth remains a separate overlay. Hide the normal blink while this face overlay is active. v9.22 animates the existing raster cat pose and eye overlay; restart the `oops` mood animation on each second-and-later wrong-answer beat.
+- The concerned cat face uses the local transparent overlay `assets/cat/faces/oops-eyes.webp` on every wrong answer: `data-oops-level="first"` for the first mistake and `"second"` for the second and later mistakes. Keep its mouth area transparent; the separate mouth overlay stays on its neutral closed frame during retry speech while the speaking bars remain active. Hide the normal blink while either oops face is active. The second-and-later reaction keeps its stronger pop animation.
 
 - v9.22 uses cache-busting `?v=9.21` URLs for the app stylesheet, scripts and second-mistake audio/face assets and the raster-cat oops animation. This project has no `sw.js` or service-worker registration; do not add a worker solely for static cache updates.
+
+- v9.23 keeps the worried-eye overlay visible on the first and subsequent wrong answers, holds the mouth on its neutral closed frame during retry clips, and keeps the audio speaking bars active.
