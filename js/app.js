@@ -1,4 +1,4 @@
-/* Arabic Learning Game v9.20 — second-mistake feedback and cache-busted assets. */
+/* Arabic Learning Game v9.21 — second-mistake feedback on the second and later mistakes. */
 (function () {
   'use strict';
 
@@ -854,7 +854,7 @@
 
     if (item.id !== state.target.id) {
       state.wrongAttempts += 1;
-      const isSecondMistake = state.wrongAttempts === 2;
+      const isSecondMistake = state.wrongAttempts >= 2;
       if (state.firstTryCorrect === null) state.firstTryCorrect = false;
       state.waitingAfterWrong = true;
       state.promptReady = false;
