@@ -1254,8 +1254,16 @@ body.game-active .app-footer { display: none; }
   pointer-events: none;
   user-select: none;
 }
-.cat-companion[data-oops-level="second"] .cat-oops-face-overlay { visibility: visible; }
-.cat-companion[data-oops-level="second"] .cat-blink-overlay { visibility: hidden !important; }
+.cat-companion[data-oops-level] .cat-oops-face-overlay { visibility: visible; }
+.cat-companion[data-oops-level] .cat-blink-overlay { visibility: hidden !important; }
+.cat-companion[data-oops-level="first"] .cat-oops-face-overlay {
+  transform-origin: 50% 50%;
+  animation: catOopsFaceFirst .28s ease-out both;
+}
+@keyframes catOopsFaceFirst {
+  from { opacity: 0; transform: translateY(2px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 
 /* v9.17 — sound-effects switch (home header only; the header is hidden during play).
    `.quiet-button span { font-size: 18px }` would enlarge the label, so size it explicitly. */
@@ -1706,7 +1714,7 @@ body.game-active .app-footer { display: none; }
 }
 
 
-/* v9.22 — bring the original oops reaction back to the current raster cat.
+/* v9.23 — replay the concerned raster-cat reaction on every wrong answer.
    The former per-part selectors (.cat-head/.cat-ear/.cat-paw) target the old
    SVG rig, which is no longer in the DOM. Animate the flattened pose and the
    separate transparent eye overlay instead. */
