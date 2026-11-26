@@ -15,7 +15,7 @@
 - Use one persistent cat companion as the only speaking mascot. Keep it visible on both home and activity screens; do not add additional speaking animal characters unless the user explicitly asks.
 - Reuse existing local greeting, target, praise and retry audio before asking for new recordings. Do not add speech that depends on online TTS.
 
-- Current build version: v9.20. Keep the visible version label and metadata synchronized for future releases.
+- Current build version: v9.21. Keep the visible version label and metadata synchronized for future releases.
 - Session length is 15 completed rounds. The optional end clip path is `assets/audio/instructions/game-ended.mp3`; do not assume it exists until supplied.
 
 - v9.06 uses LocalAudio.play(audioId, onStart) and playCatAudio() to synchronize mouth/voice-bar animation with actual local audio playback. Preserve request-token cancellation behavior.
@@ -36,4 +36,4 @@
 
 - The second-mistake cat face uses the local transparent 418×418 overlay `assets/cat/faces/oops-eyes.webp`, controlled by `data-oops-level="second"`. Keep its mouth area transparent; the existing synchronized mouth remains a separate overlay. Hide the normal blink while this face overlay is active.
 
-- v9.20 uses cache-busting `?v=9.20` URLs for the app stylesheet, scripts and newly added second-mistake audio/face assets. This project has no `sw.js` or service-worker registration; do not add a worker solely for static cache updates.
+- v9.21 uses cache-busting `?v=9.20` URLs for the app stylesheet, scripts and second-mistake audio/face assets. This project has no `sw.js` or service-worker registration; do not add a worker solely for static cache updates.
