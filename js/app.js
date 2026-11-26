@@ -1,4 +1,4 @@
-/* Arabic Learning Game v9.26 — repaired concerned-eyes overlay. */
+/* Arabic Learning Game v9.27 — repaired concerned-eyes overlay. */
 (function () {
   'use strict';
 
