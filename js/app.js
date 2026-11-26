@@ -1,4 +1,4 @@
-/* Arabic Learning Game v9.27 — repaired concerned-eyes overlay. */
+/* Arabic Learning Game v9.25 — whole-character wrong-answer reaction. */
 (function () {
   'use strict';
 
@@ -12,21 +12,6 @@
   const catCharacterImage = $('catCharacterImage');
   const catMouthImage = $('catMouthImage');
   const catBlinkImage = $('catBlinkImage');
-  const catOopsFaceImage = $('catOopsFaceImage');
-
-  function markCatOopsFaceMissing() {
-    if (!catCompanion || catCompanion.dataset.oopsFace === 'missing') return;
-    catCompanion.dataset.oopsFace = 'missing';
-    console.warn('Concerned cat face image failed to load; hiding the broken overlay.');
-  }
-
-  if (catOopsFaceImage) {
-    catOopsFaceImage.addEventListener('error', markCatOopsFaceMissing, { once: true });
-    if (catOopsFaceImage.complete && catOopsFaceImage.naturalWidth === 0) markCatOopsFaceMissing();
-    window.addEventListener('load', () => {
-      if (catOopsFaceImage.naturalWidth === 0) markCatOopsFaceMissing();
-    }, { once: true });
-  }
   const catMouthFrames = [
     'assets/cat/mouth/frame-01-closed.webp',
     'assets/cat/mouth/frame-02-slight.webp',
