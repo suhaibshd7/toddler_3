@@ -1,4 +1,4 @@
-/* Arabic Learning Game v9.19 — second-mistake feedback and listen-before-tap input lock. */
+/* Arabic Learning Game v9.20 — second-mistake feedback and cache-busted assets. */
 (function () {
   'use strict';
 
