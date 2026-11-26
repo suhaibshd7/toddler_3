@@ -1271,13 +1271,15 @@ body.game-active .app-footer { display: none; }
 }
 .cat-companion[data-oops-level] .cat-oops-face-overlay { visibility: visible; }
 .cat-companion[data-oops-level] .cat-blink-overlay { visibility: hidden !important; }
-.cat-companion[data-oops-level="first"] .cat-oops-face-overlay {
+.cat-companion[data-mood="oops"][data-oops-level="first"] .cat-oops-face-overlay {
   transform-origin: 50% 50%;
-  animation: catOopsFaceFirst .28s ease-out both;
+  animation: catOopsFaceFirst .52s cubic-bezier(.18,.8,.25,1) both;
 }
 @keyframes catOopsFaceFirst {
-  from { opacity: 0; transform: translateY(2px) scale(.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  0% { opacity: 0; transform: translateY(7px) scale(.72); }
+  45% { opacity: 1; transform: translateY(-1px) scale(1.12); }
+  72% { opacity: 1; transform: translateY(0) scale(.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* v9.17 — sound-effects switch (home header only; the header is hidden during play).
@@ -1747,27 +1749,58 @@ body.game-active .app-footer { display: none; }
 }
 
 
-/* v9.23 — replay the concerned raster-cat reaction on every wrong answer.
-   The former per-part selectors (.cat-head/.cat-ear/.cat-paw) target the old
-   SVG rig, which is no longer in the DOM. Animate the flattened pose and the
-   separate transparent eye overlay instead. */
-.cat-companion[data-mood="oops"] .cat-companion-image {
-  transform-origin: 50% 54%;
-  animation: catOopsRasterBody .95s cubic-bezier(.2,.7,.25,1) both;
+/* v9.25 — animate the cat and all aligned transparent layers as one character.
+   The mouth and concerned eyes are siblings of the base image, so moving only
+   .cat-companion-image made the face appear detached and muted the reaction. */
+.cat-companion[data-mood="oops"] .cat-character-button {
+  transform-origin: 50% 78%;
+  animation: catOopsFlinch .82s cubic-bezier(.18,.8,.25,1) both;
 }
-.cat-companion[data-oops-level="second"] .cat-oops-face-overlay {
+.cat-companion[data-mood="oops"][data-oops-level="second"] .cat-character-button {
+  animation-name: catOopsSecondFlinch;
+  animation-duration: 1s;
+}
+.cat-companion[data-mood="oops"] .cat-speech-bubble {
+  animation: catOopsBubble .46s cubic-bezier(.18,.8,.25,1) both;
+}
+.cat-companion[data-mood="oops"][data-oops-level="second"] .cat-oops-face-overlay {
   transform-origin: 50% 50%;
-  animation: catOopsFacePop .58s cubic-bezier(.2,.8,.2,1) both;
+  animation: catOopsFacePop .62s cubic-bezier(.2,.8,.2,1) both;
 }
-@keyframes catOopsRasterBody {
+@keyframes catOopsFlinch {
   0% { transform: translateY(0) rotate(0) scale(1); }
-  30% { transform: translateY(3px) rotate(-3deg) scale(.99,1.01); }
-  62% { transform: translateY(-2px) rotate(2deg) scale(1.015,.99); }
-  100% { transform: translateY(0) rotate(-1deg) scale(1); }
+  20% { transform: translateY(4px) rotate(-5deg) scale(.97,1.01); }
+  44% { transform: translateY(-2px) rotate(3deg) scale(1.025,.985); }
+  68% { transform: translateY(1px) rotate(-1.5deg) scale(.995,1.005); }
+  100% { transform: translateY(0) rotate(0) scale(1); }
+}
+@keyframes catOopsSecondFlinch {
+  0% { transform: translateY(0) rotate(0) scale(1); }
+  13% { transform: translateY(4px) rotate(-7deg) scale(.96,1.02); }
+  27% { transform: translateY(-3px) rotate(6deg) scale(1.03,.98); }
+  41% { transform: translateY(2px) rotate(-4deg) scale(.985,1.01); }
+  56% { transform: translateY(-1px) rotate(2.5deg) scale(1.01,.995); }
+  74% { transform: translateY(1px) rotate(-1deg) scale(1); }
+  100% { transform: translateY(0) rotate(0) scale(1); }
+}
+@keyframes catOopsBubble {
+  0% { transform: translateY(0) scale(1); }
+  38% { transform: translateY(-3px) scale(1.025); }
+  72% { transform: translateY(1px) scale(.99); }
+  100% { transform: translateY(0) scale(1); }
 }
 @keyframes catOopsFacePop {
   0% { opacity: 0; transform: translateY(5px) scale(.76); }
   42% { opacity: 1; transform: translateY(-1px) scale(1.14); }
   72% { opacity: 1; transform: translateY(0) scale(.98); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cat-companion[data-mood="oops"] .cat-character-button,
+  .cat-companion[data-mood="oops"] .cat-oops-face-overlay,
+  .cat-companion[data-mood="oops"] .cat-speech-bubble,
+  .cat-companion[data-mood="oops"] .cat-oops-mark {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

@@ -1,4 +1,4 @@
-Arabic Kitten Game v9.24 — GitHub import
+Arabic Kitten Game v9.25 — GitHub import
 
 The repository root is the only maintained project source. Do not use the old nested toddler3-publish snapshot.
 

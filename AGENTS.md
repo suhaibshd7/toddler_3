@@ -13,7 +13,7 @@
 - Current activities: animals, colors, shapes, numbers and Arabic letters. Do not assume every alphabet letter is present; the current letter audio batch contains ألف، باء، جيم only.
 - Use one persistent cat companion as the only speaking mascot. Keep it visible on both home and activity screens; do not add additional speaking animal characters unless the user explicitly asks.
 - Reuse existing local greeting, target, praise and retry audio before asking for new recordings. Do not add speech that depends on online TTS.
-- Current build version: v9.24. Keep the visible version label and metadata synchronized for future releases.
+- Current build version: v9.25. Keep the visible version label and metadata synchronized for future releases.
 - Session length is 15 completed rounds. The optional end clip path is `assets/audio/instructions/game-ended.mp3`; do not assume it exists until supplied.
 
 - Preserve existing local audio playback synchronization, request-token cancellation, loudness-envelope mouth animation, idle blink, reduced-motion handling, and MAX_CHOICES = 6.

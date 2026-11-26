@@ -1,4 +1,4 @@
-/* Arabic Learning Game v9.24 — refreshed publishing and asset cache keys. */
+/* Arabic Learning Game v9.25 — whole-character wrong-answer reaction. */
 (function () {
   'use strict';
 
@@ -871,7 +871,7 @@
       const token = state.roundToken;
       // Say what was actually tapped (existing clip), so a mistake teaches that
       // card's name, then the usual encouragement and the target word again.
-      setCatMessage(item.word, 'oops');
+      setCatMessage(item.word, 'oops', { secondMistake: isSecondMistake });
       await playCatAudio(item.audioId, {
         animateMouth: false,
         guard: () => token === state.roundToken && state.active

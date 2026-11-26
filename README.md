@@ -1,6 +1,6 @@
-# نتعلّم باللعب — Arabic Kitten Game (v9.24)
+# نتعلّم باللعب — Arabic Kitten Game (v9.25)
 
-The v9.24 Arabic learning game is stored as normal, editable project files in this repository. The repository root is the single source of truth; there is no maintained duplicate under a nested publishing folder.
+The v9.25 Arabic learning game is stored as normal, editable project files in this repository. The repository root is the single source of truth; there is no maintained duplicate under a nested publishing folder.
 
 ## Run locally
 
