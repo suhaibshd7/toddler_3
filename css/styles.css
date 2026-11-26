@@ -1240,7 +1240,7 @@ body.game-active .app-footer { display: none; }
 }
 .cat-blink-overlay.is-blinking { visibility: visible; }
 
-/* Second-mistake eyes. The mouth remains a separate synchronized overlay. */
+/* v9.20: second-mistake eyes. The mouth remains a separate synchronized overlay. */
 .cat-oops-face-overlay {
   position: absolute;
   z-index: 2;
