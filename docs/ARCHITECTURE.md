@@ -176,3 +176,11 @@ The cat uses the local transparent 418×418 `assets/cat/faces/oops-eyes.webp` ov
 ## Raster-cat oops animation (v9.22)
 
 The old oops choreography targeted separate SVG parts (head, body, ears, paw and tail). The current companion uses one frame-based WebP pose instead, so those selectors no longer animate visible elements. v9.22 ports the reaction to the current layers: the base cat image performs a small startled dip/tilt, while the transparent worried-eye overlay pops into place. Reflow the `oops` mood on every feedback beat so repeated second-and-later wrong answers replay the motion. The eye art remains local; the mouth overlay remains independently audio-synchronized.
+
+
+## Consistent wrong-answer expression (v9.23)
+
+- The worried-eye overlay `assets/cat/faces/oops-eyes.webp` is shown on the first incorrect answer as well as the second and later errors in the same round.
+- The first mistake fades the concerned eyes in; the second and later mistakes retain the stronger pop animation and dedicated retry recording.
+- Retry clips keep the mouth on its neutral closed overlay while the speaking bars continue to show that the cat is talking. The next target word clears the oops face and restores normal audio-synchronized mouth movement.
+- All artwork and audio remain local, and the wrong-attempt count still resets at the start of each round.
