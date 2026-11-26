@@ -32,7 +32,22 @@ button:disabled { cursor: default; }
 .brand-mark { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 17px; background: #e7edff; font-size: 30px; box-shadow: inset 0 -4px 0 rgba(68, 93, 174, .07); overflow: hidden; }
 .brand-mark img { width: 47px; height: 47px; object-fit: contain; }
 .brand-title { font-weight: 900; font-size: 19px; letter-spacing: -.3px; }
-.brand-subtitle { margin-top: 3px; color: var(--muted); font-size: 12px; }
+.brand-meta-row { display: flex; align-items: center; gap: 8px; margin-top: 3px; }
+.brand-subtitle { margin-top: 0; color: var(--muted); font-size: 12px; }
+.home-version-badge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid #d9e2ff;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #405fc9;
+  font: 800 10px/1.4 Tahoma, Arial, sans-serif;
+  letter-spacing: .2px;
+  white-space: nowrap;
+  direction: ltr;
+}
 .offline-pill { display: inline-flex; align-items: center; gap: 7px; border: 1px solid #dcefe6; background: rgba(255,255,255,.75); color: #367b5d; border-radius: 999px; padding: 8px 12px; font-size: 12px; font-weight: 700; white-space: nowrap; }
 .offline-dot { width: 8px; height: 8px; border-radius: 50%; background: #38b783; }
 main { flex: 1; display: flex; flex-direction: column; }
@@ -202,7 +217,7 @@ button.activity-card:active { transform: scale(.98); }
 .continue-session-button:disabled { opacity: .65; }
 @keyframes sessionPauseIn { from { opacity: 0; transform: translateY(7px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-/* A small build label stays visible on both screens without covering controls. */
+/* Build label stays visible in the corner; the home header also shows the release prominently. */
 .build-version {
   position: fixed;
   z-index: 30;
