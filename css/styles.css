@@ -1270,6 +1270,7 @@ body.game-active .app-footer { display: none; }
   user-select: none;
 }
 .cat-companion[data-oops-level] .cat-oops-face-overlay { visibility: visible; }
+.cat-companion[data-oops-face="missing"] .cat-oops-face-overlay { visibility: hidden !important; }
 .cat-companion[data-oops-level] .cat-blink-overlay { visibility: hidden !important; }
 .cat-companion[data-mood="oops"][data-oops-level="first"] .cat-oops-face-overlay {
   transform-origin: 50% 50%;
