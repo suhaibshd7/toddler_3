@@ -36,4 +36,4 @@
 
 - The second-mistake cat face uses the local transparent 418×418 overlay `assets/cat/faces/oops-eyes.webp`, controlled by `data-oops-level="second"`. Keep its mouth area transparent; the existing synchronized mouth remains a separate overlay. Hide the normal blink while this face overlay is active.
 
-- v9.21 uses cache-busting `?v=9.20` URLs for the app stylesheet, scripts and second-mistake audio/face assets. This project has no `sw.js` or service-worker registration; do not add a worker solely for static cache updates.
+- v9.21 uses cache-busting `?v=9.21` URLs for the app stylesheet, scripts and second-mistake audio/face assets. This project has no `sw.js` or service-worker registration; do not add a worker solely for static cache updates.
