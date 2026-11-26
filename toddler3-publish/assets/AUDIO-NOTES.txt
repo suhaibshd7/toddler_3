@@ -1,9 +1,0 @@
-Audio files in this project were supplied by the user in `ezyZip.zip` for this project. The project generator preserved the MP3 bytes and renamed files to stable ASCII filenames for reliable paths. One byte-identical duplicate (`اجابة صحيحة.mp3`) was omitted; its identical spelling-variant copy (`إجابة صحيحة.mp3`) is included. Confirm the applicable ElevenLabs account/output terms before redistributing the project publicly; this note does not assert a public redistribution licence.
-
-
-Additional number and letter recordings were supplied by the user in `ezyZip(1).zip` and added without altering the MP3 bytes:
-- Numbers: واحد، اثنان، ثلاثة، أربعة، خمسة.
-- Letter names: ألف، باء، جيم (three letters in the current batch).
-Source filenames are retained in `assets/audio-manifest.json`; the runtime uses stable ASCII filenames.
-
-Optional future clip (not included yet): `assets/audio/instructions/game-ended.mp3` — exact spoken phrase: `انتهت اللعبة`. The game checks for this file only when a 15-round session ends; it can be added later without changing JavaScript.
