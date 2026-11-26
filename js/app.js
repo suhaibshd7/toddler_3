@@ -1,4 +1,4 @@
-/* Arabic Learning Game v9.23 — consistent worried expression on every wrong answer. */
+/* Arabic Learning Game v9.24 — refreshed publishing and asset cache keys. */
 (function () {
   'use strict';
 
