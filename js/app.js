@@ -1,4 +1,4 @@
-/* Arabic Learning Game v9.22 — restore animated second-mistake cat reaction. */
+/* Arabic Learning Game v9.23 — consistent worried expression on every wrong answer. */
 (function () {
   'use strict';
 
@@ -110,9 +110,11 @@
     catMouthTimer = window.setTimeout(tick, 125);
   }
 
-  function setCatSpeaking(isSpeaking, speech) {
+  function setCatSpeaking(isSpeaking, speech, animateMouth = true) {
+    // Keep the speaking bars active during gentle retry speech, but hold the
+    // mouth on its neutral closed frame so the cat does not look cheerful.
     catCompanion.dataset.speaking = isSpeaking ? 'true' : 'false';
-    if (isSpeaking) startCatMouth(speech);
+    if (isSpeaking && animateMouth) startCatMouth(speech);
     else stopCatMouth();
   }
 
@@ -370,13 +372,15 @@
     if (catPointResetTimer) window.clearTimeout(catPointResetTimer);
     catPointResetTimer = null;
 
-    if (options.secondMistake === true) catCompanion.dataset.oopsLevel = 'second';
-    else delete catCompanion.dataset.oopsLevel;
+    const nextMood = mood || 'idle';
+    if (nextMood === 'oops') {
+      catCompanion.dataset.oopsLevel = options.secondMistake === true ? 'second' : 'first';
+    } else {
+      delete catCompanion.dataset.oopsLevel;
+    }
 
     if (options.celebration) catCompanion.dataset.celebration = options.celebration;
     else if (mood !== 'celebrating') delete catCompanion.dataset.celebration;
-
-    const nextMood = mood || 'idle';
     if (nextMood === 'greeting' || nextMood === 'tiny-wave' || nextMood === 'celebrating') playCatWave();
     if (catCompanion.dataset.mood !== nextMood || nextMood === 'oops') {
       // Restart the raster-cat "oops" choreography on every wrong-answer beat.
@@ -446,7 +450,7 @@
     const play = options.optional ? LocalAudio.playOptional : LocalAudio.play;
     return play(audioId, (audioElement) => {
       if (token !== catSpeechToken || !guard()) return;
-      setCatSpeaking(animateMouth, { audioId, audio: audioElement });
+      setCatSpeaking(true, { audioId, audio: audioElement }, animateMouth);
       if (typeof options.onStart === 'function') options.onStart();
     }).finally(() => {
       if (token === catSpeechToken) setCatSpeaking(false);
@@ -869,6 +873,7 @@
       // card's name, then the usual encouragement and the target word again.
       setCatMessage(item.word, 'oops');
       await playCatAudio(item.audioId, {
+        animateMouth: false,
         guard: () => token === state.roundToken && state.active
       });
       if (token !== state.roundToken || !state.active) return;
@@ -879,6 +884,7 @@
         // The cat stays concerned and speaks through the normal synchronized path.
         setCatMessage('لا بأس، لنستمع مرة أخرى!', 'oops', { secondMistake: true });
         await playCatAudio('feedback.second_mistake', {
+          animateMouth: false,
           guard: () => token === state.roundToken && state.active
         });
       } else {
