@@ -22,3 +22,9 @@
 - Offline-first local assets and audio.
 - Existing second-mistake recording and stronger face-pop animation.
 - Session, progress, activity, and choice behavior.
+
+## Home-screen version visibility
+
+- Added a prominent `v9.23` badge next to the app name in the home header.
+- Kept it visible on narrow phones and short landscape layouts even when the subtitle is hidden.
+- The existing small fixed build label remains as a secondary reference.
