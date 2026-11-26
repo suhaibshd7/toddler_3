@@ -1240,6 +1240,23 @@ body.game-active .app-footer { display: none; }
 }
 .cat-blink-overlay.is-blinking { visibility: visible; }
 
+/* v9.20: second-mistake eyes. The mouth remains a separate synchronized overlay. */
+.cat-oops-face-overlay {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  overflow: visible;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.cat-companion[data-oops-level="second"] .cat-oops-face-overlay { visibility: visible; }
+.cat-companion[data-oops-level="second"] .cat-blink-overlay { visibility: hidden !important; }
+
 /* v9.17 — sound-effects switch (home header only; the header is hidden during play).
    `.quiet-button span { font-size: 18px }` would enlarge the label, so size it explicitly. */
 .sfx-toggle { display: inline-flex; align-items: center; gap: 5px; min-height: 36px; padding: 4px 10px; font-size: 12px; }

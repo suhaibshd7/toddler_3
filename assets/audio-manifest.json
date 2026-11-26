@@ -6,7 +6,8 @@
     "Audio files supplied by the user are preserved byte-for-byte; source filenames are recorded for traceability.",
     "One byte-identical spelling variant of إجابة صحيحة was excluded to avoid storing the same audio twice.",
     "v0.6 uses the persistent cat companion with the existing greeting, activity-start, target-word, praise and retry audio clips.",
-    "v9.02 uses 15-round sessions. Optional future end clip: assets/audio/instructions/game-ended.mp3 (انتهت اللعبة); not included until supplied."
+    "v9.02 uses 15-round sessions. Optional future end clip: assets/audio/instructions/game-ended.mp3 (انتهت اللعبة); not included until supplied.",
+    "v9.19 stores the owner-supplied second-mistake clip at assets/audio/feedback/second-mistake.mp3."
   ],
   "assets": [
     {
@@ -377,6 +378,14 @@
       "path": "assets/audio/letters/jeem.mp3",
       "durationSeconds": 1.23,
       "sha256": "59ed2963a4ef44d1246b362d5ca1e2d8e33fb633f198acc05be1b077d9dd225c",
+      "usedInPrototype": true
+    },
+    {
+      "id": "feedback.second_mistake",
+      "category": "التغذية الراجعة",
+      "textArabic": "خطأ",
+      "sourceFilename": "خطأ.mp3",
+      "path": "assets/audio/feedback/second-mistake.mp3",
       "usedInPrototype": true
     }
   ],

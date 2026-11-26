@@ -100,6 +100,7 @@
       'praise.correct_answer': 'assets/audio/praise/correct-answer.mp3',
       'praise.wow': 'assets/audio/praise/wow.mp3',
       'praise.try_again': 'assets/audio/praise/try-again.mp3',
+      'feedback.second_mistake': 'assets/audio/feedback/second-mistake.mp3?v=9.20',
       'instruction.hello': 'assets/audio/instructions/hello.mp3',
       'instruction.lets_play': 'assets/audio/instructions/lets-play.mp3',
       'instruction.listen_to_word': 'assets/audio/instructions/listen-to-word.mp3',
